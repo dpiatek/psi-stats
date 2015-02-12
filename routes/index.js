@@ -8,6 +8,18 @@ router.get('/', function(req, res, next) {
   PageStats.find(function(err, data) {
     if (err) return console.error(err)
 
+    var dates = []
+
+    data.forEach(function(item) {
+      dates.push(item.meta.added)
+    })
+
+    var meta = {
+      url: data[0] ? data[0].url : "",
+      dates: dates,
+      pageTitle: data[0] ? data[0].pageTitle : ""
+    }
+
     var keys = Object.keys(data[0].stats.toObject())
     var sample = data.shift(), accumulator = {}
 
@@ -24,7 +36,7 @@ router.get('/', function(req, res, next) {
       return accumulator
     }, accumulator)
 
-    res.render('index', { data: result, meta: data[0].meta })
+    res.render('index', { data: result, meta: meta })
   })
 })
 
