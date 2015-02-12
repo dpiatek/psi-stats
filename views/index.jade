@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= meta.url
+  ul
+    each values, key in data
+      li
+        strong= key
+        pre= values
