@@ -1,5 +1,10 @@
 var psi = require('psi')
 var mongoose = require('mongoose')
+
+var key = process.env["PSI_STATS_KEY"]
+var locale = process.env["PSI_STATS_LOCALE"]
+var strategy = process.env["PSI_STATS_STRATEGY"]
+
 var STAT_TYPES = {
   "numberResources": Number,
   "numberHosts": Number,
@@ -24,9 +29,19 @@ var schema = mongoose.Schema({
 });
 
 schema.statics.updateStats = function(url, cb) {
-  var self = this;
+  var self = this
+  var config = {
+    locale: locale || "en_US",
+    strategy: strategy || "mobile"
+  }
 
-  psi(url, function(err, result) {
+  if (key) {
+    config.key = key
+  } else {
+    config.nokey = true
+  }
+
+  psi(url, config, function(err, result) {
     if (err) return console.error(err)
 
     var item = {

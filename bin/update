@@ -2,13 +2,16 @@
 
 var http = require('http');
 var CronJob = require('cron').CronJob;
+var cronTime = process.argv[2] === "--cron-time" ? process.argv.slice(3)[0] : '* 15,45 * * * *';
+
+console.log("Scheduling jobs at: " + cronTime)
 
 // cron job to update data
-var job = new CronJob('15 * * * * *', function() {
-  http.get("http://localhost:" + (process.env.PORT || '3000') + "/update", function(res) {
-    console.log("Request successful at " + new Date());
+var job = new CronJob(cronTime, function() {
+  http.get('http://localhost:' + (process.env.PORT || '3000') + '/update', function(res) {
+    console.log('Request successful at ' + new Date());
   }).on('error', function(e) {
-    console.log("There was a problem with the request: " + e.message);
+    console.log('There was a problem with the request: ' + e.message);
   });
 });
 
