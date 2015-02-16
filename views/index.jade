@@ -1,12 +1,9 @@
 extends layout
 
 block content
-  h1= meta.url
+  h1 PageSpeed Insights for #{meta.url}
   ul
     each values, key in data
       li
-        canvas.container(data-stat-key=key, width="600", height="220")
-
-  script(type="text/javascript", src="bower_components/Chart.js/Chart.js")
-  script(type="text/javascript", src="javascripts/scripts.js")
-
+        strong=key
+        pre=values
