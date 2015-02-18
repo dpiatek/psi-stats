@@ -34,7 +34,7 @@ function getMeta(data, url) {
 function getResult(data) {
   if (!data[0]) return []
 
-  var keys = Object.keys(data[0].stats.toObject())
+  var keys = Object.keys(PageStats.schema.tree.stats)
   var sample = data.shift(), accumulator = {}
 
   keys.forEach(function(key) {
