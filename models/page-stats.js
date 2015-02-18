@@ -16,7 +16,8 @@ var STAT_TYPES = {
   "javascriptResponseBytes": String,
   "otherResponseBytes": String,
   "numberJsResources": Number,
-  "numberCssResources": Number
+  "numberCssResources": Number,
+  "score": Number
 }
 
 var schema = mongoose.Schema({
@@ -55,6 +56,9 @@ schema.statics.updateStats = function(url, cb) {
     Object.keys(STAT_TYPES).forEach(function(stat) {
       item.stats[stat] = result.pageStats[stat]
     })
+
+    // Score is at top level
+    item.stats.score = result.score;
 
     self.create(item, cb)
   })
