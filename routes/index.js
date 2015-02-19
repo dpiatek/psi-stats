@@ -9,8 +9,10 @@ router.get('/', function(req, res, next) {
   PageStats.find({ 'meta.url': new RegExp(url, 'i') }, function(err, data) {
     if (err) return console.error(err)
 
-    var meta = getMeta(data, url)
-    var result = getResult(data)
+    var reducedData = data.length > 10 ? data.slice(-10) : data
+
+    var meta = getMeta(reducedData, url)
+    var result = getResult(reducedData)
 
     res.render('index', { data: result, meta: meta })
   })
@@ -42,7 +44,7 @@ function getResult(data) {
     accumulator[key] = [val]
   })
 
-  return (data.length > 10 ? data.slice(-10) : data).reduce(function(accumulator, current) {
+  return data.reduce(function(accumulator, current) {
     keys.forEach(function(key) {
       accumulator[key].push(current.stats[key])
     })

@@ -2,6 +2,11 @@ extends layout
 
 block content
   h1 PageSpeed Insights for #{meta.url}
+  ol
+    each value in meta.dates
+      li
+        pre=value
+
   ul
     each values, key in data
       li
