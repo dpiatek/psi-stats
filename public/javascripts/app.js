@@ -52,11 +52,10 @@
 
 
   function formatDates(dates) {
-    var parseDate = d3.time.format("%d/%m %H:%M")
     var result = []
 
     for (var i = 0; i < dates.length; i++) {
-      result.push(parseDate(new Date(dates[i])))
+      result.push(new Date(dates[i]))
     }
 
     return result
@@ -81,9 +80,9 @@
   }
 
   function createChart(data, dates, config) {
-    var margin = {top: 40, right: 20, bottom: 30, left: 80},
-        width = (window.innerWidth * 0.9) - margin.left - margin.right,
-        height = 220 - margin.top - margin.bottom;
+    var margin = {top: 80, right: 80, bottom: 30, left: 80},
+        width = (window.innerWidth * 0.95) - margin.left - margin.right,
+        height = 260 - margin.top - margin.bottom;
 
     var formatSI = d3.format("s");
     var formatInteger = d3.format("d");
@@ -113,6 +112,8 @@
     var xAxis = d3.svg.axis()
       .scale(x)
       .orient("bottom")
+      .tickPadding(10)
+      .tickFormat(d3.time.format("%d/%m %H:%M"))
 
     var yAxis = d3.svg.axis()
       .scale(y)
@@ -140,6 +141,7 @@
     y.domain([0, d3.max(data, function(d) { return d.val }) * 1.25])
 
     svg.append("text")
+      .attr("class", "title")
       .attr("transform", "translate(0," + -20 + ")")
       .text(config.label)
 
