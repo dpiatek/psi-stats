@@ -4,13 +4,14 @@ var favicon = require('serve-favicon')
 var logger = require('morgan')
 
 var mongoose = require('mongoose')
+var MONGO_URI = process.env["PSI_MONGO"] || 'mongodb://localhost/stats'
 require(__dirname + '/models/page-stats')
 
 var routes = require('./routes/index')
 var update = require('./routes/update')
 
 var options = { server: { socketOptions: { keepAlive: 1 } } }
-mongoose.connect('mongodb://localhost/stats', options)
+mongoose.connect(MONGO_URI, options)
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'))
 
 var app = express()
