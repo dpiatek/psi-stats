@@ -7,17 +7,9 @@ a {
   color: #00B7FF;
 }
 
-
-.bar {
-  fill: steelblue;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis {
-  font: 10px sans-serif;
+.area {
+  fill: rgba(70, 130, 180, 0.3);
+  clip-path: url(#clip);
 }
 
 .axis path,
@@ -27,10 +19,26 @@ a {
   shape-rendering: crispEdges;
 }
 
-/*.x.axis path {
-  display: none;
-}*/
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
 
+.circle {
+  opacity: 0;
+  stroke: steelblue;
+  fill: white;
+}
 
+.circle:hover {
+  opacity: 1;
+}
 
-
+ .d3-tip {
+  font-size: 12px;
+  background-color: aliceblue;
+  border: 1px solid steelblue;
+  padding: 4px;
+  border-radius: 3px;
+}
