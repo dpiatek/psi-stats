@@ -1,17 +1,18 @@
 #!/usr/bin/env node
 
 var http = require('http');
+var url = require('url');
 var CronJob = require('cron').CronJob;
-var cronTime = process.argv[2] === "--cron-time" ? process.argv.slice(3)[0] : '* 15,45 * * * *';
+var target = process.argv[2];
+var cronTime = process.argv[3] === "--cron-time" ? process.argv.slice(4)[0] : '* 15,45 * * * *';
 
 console.log("Scheduling jobs at: " + cronTime)
 
-// cron job to update data
 var job = new CronJob(cronTime, function() {
-  http.get('http://localhost:' + (process.env.PORT || '3000') + '/update', function(res) {
+  http.get(url.resolve(target, '/update') , function(res) {
     console.log('Request successful at ' + new Date());
   }).on('error', function(e) {
-    console.log('There was a problem with the request: ' + e.message);
+    console.error('There was a problem with the request: ' + e.message);
   });
 });
 
