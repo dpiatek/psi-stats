@@ -1,8 +1,23 @@
 {
   "name": "psi-app",
+  "description": "Track a page PageSpeed Insights stats easily.",
   "version": "0.1.0",
+  "keywords": [
+    "psi",
+    "PageSpeed Insights"
+  ],
   "scripts": {
     "start": "node ./bin/www"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/dpiatek/psi-stats"
+  },
+  "bugs": {
+    "url": "https://github.com/dpiatek/psi-stats/issues"
+  },
+  "engines": {
+    "node": "<=0.10.33"
   },
   "dependencies": {
     "cron": "^1.0.6",
@@ -12,5 +27,10 @@
     "mongoose": "^3.8.23",
     "morgan": "~1.5.1",
     "psi": "^1.0.5"
-  }
+  },
+  "author": {
+    "name": "Dominik Piatek",
+    "url": "http://dominikpiatek.com"
+  },
+  "license" : "MIT"
 }
