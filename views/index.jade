@@ -1,7 +1,9 @@
 extends layout
 
 block content
-  h1 PageSpeed Insights for #{meta.url}
+  h1
+    a(src="https://developers.google.com/speed/docs/insights/about") PageSpeed Insights
+    | for #{meta.url}
 
   script.
     var data = !{JSON.stringify(data)}

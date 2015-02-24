@@ -1,4 +1,4 @@
-# PageSpeed Insight Stats
+# psi-stats
 
 Track your url's [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) results, see your score and set performance budgets.
 
