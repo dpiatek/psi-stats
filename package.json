@@ -9,9 +9,9 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/dpiatek/psi-stats"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dpiatek/psi-stats"
   },
   "bugs": {
     "url": "https://github.com/dpiatek/psi-stats/issues"
