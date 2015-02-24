@@ -54,8 +54,9 @@ npm i --development
 Then use either `npm run-script bundle` to recompile `bundle.js` or `npm run-script bundle-develop` to setup a watch and generate sourcemaps.
 
 
-## Current limitations
+## Known issues
 
 - psi does not follow redirects
-- data is shown by url, so if you change the strategy option for psi middleway, this will be bundlded
-- only byte sizes and number of resources data is shown
+- data is shown by url, so if you change the strategy option for psi haflway, this will not be reflected in any way in the UI
+- only byte sizes and number of resources data is shown - other stuff contributing to the score it not
+- the UI only shows pretty charts right now, but it would be nice if it would encourage insight better (show thresholds for example)
