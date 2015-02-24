@@ -43,6 +43,16 @@ node ./bin/udpate http://yoursite.com --cron-time "* * 6 * * *"
 - PSI_STATS_LOCALE - set locale for psi
 - PSI_STATS_STRATEGY - set strategy for psi (it defaults to mobile)
 
+## Development
+
+The front-end uses [browserify](http://browserify.org/) to compile and minify files. Install the dependencies:
+
+```
+npm i --development
+```
+
+Then use either `npm run-script bundle` to recompile `bundle.js` or `npm run-script bundle-develop` to setup a watch and generate sourcemaps.
+
 
 ## Current limitations
 
