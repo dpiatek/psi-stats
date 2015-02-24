@@ -7,7 +7,9 @@
     "PageSpeed Insights"
   ],
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "bundle-develop": "watchify public/javascripts/app.js --debug -p [minifyify --map bundle.map.json --output public/javascripts/bundle.map.json] -v -o public/javascripts/bundle.js",
+    "bundle": "browserify public/javascripts/app.js -v -o public/javascripts/bundle.js"
   },
   "repository": {
     "type": "git",
@@ -32,5 +34,10 @@
     "name": "Dominik Piatek",
     "url": "http://dominikpiatek.com"
   },
-  "license" : "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "minifyify": "^6.2.2",
+    "watchify": "^2.4.0"
+  }
 }
