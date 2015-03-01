@@ -23,7 +23,7 @@ function formatNumber(number) {
 }
 
 function createChart(data, dates, config) {
-  var margin = {top: 80, right: 80, bottom: 30, left: 80},
+  var margin = {top: 80, right: 80, bottom: 80, left: 80},
       width = (window.innerWidth * 0.95) - margin.left - margin.right,
       height = 260 - margin.top - margin.bottom;
 
@@ -91,7 +91,14 @@ function createChart(data, dates, config) {
   svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
-    .call(xAxis);
+    .call(xAxis)
+    .selectAll("text")
+    .style("text-anchor", "end")
+    .attr("dx", "-.8em")
+    .attr("dy", ".15em")
+    .attr("transform", function(d) {
+      return "rotate(-45)"
+    });
 
   svg.append("g")
     .attr("class", "y axis")
