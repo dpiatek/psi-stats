@@ -2,6 +2,8 @@
 
 Track your url's [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) results, see your score and set performance budgets.
 
+Demo: [http://psi-stats-example.herokuapp.com/](http://psi-stats-example.herokuapp.com/)
+
 ## Setup
 
 You will need [node.js](http://nodejs.org/) & [mongoDB](http://www.mongodb.org/).
