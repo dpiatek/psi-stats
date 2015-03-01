@@ -43,6 +43,16 @@ node ./bin/udpate http://yoursite.com --cron-time "* * 6 * * *"
 - PSI_STATS_LOCALE - set locale for psi
 - PSI_STATS_STRATEGY - set strategy for psi (it defaults to mobile)
 
+## Results range
+
+Params can be passed in the url to tweak the range and limit of results:
+
+```
+your-psi-stats-server.com?limit=20&daysAgo=5
+```
+
+Would return only the first 20 results from the last five days (ascending).
+
 ## Development
 
 The front-end uses [browserify](http://browserify.org/) to compile and minify files. Install the dependencies:
