@@ -1,23 +1,46 @@
 var express = require('express')
 var util = require('util')
+var url = require('url')
 var router = express.Router()
 var mongoose = require('mongoose')
 var PageStats = mongoose.model('PageStats')
-var url = process.env["PSI_STATS_URL"]
+var configUrl = process.env["PSI_STATS_URL"]
 
 router.get('/', function(req, res, next) {
-  PageStats.find({ 'meta.url': new RegExp(url, 'i') }, function(err, data) {
+  var params = getParams(req.url)
+
+  var daysAgo = new Date()
+  daysAgo.setDate(daysAgo.getDate() - params.daysAgo)
+
+  var q = PageStats.find({ 'meta.url': new RegExp(configUrl, 'i') }).where("meta.added").gt(daysAgo).limit(params.limit)
+  q.exec(function(err, data) {
     if (err) return console.error(err)
 
-    var reducedData = data.length > 10 ? data.slice(-10) : data
-
-    var meta = getMeta(reducedData, url)
-    var result = getResult(reducedData)
+    var meta = getMeta(data, configUrl)
+    var result = getResult(data)
 
     res.render('index', { data: result, meta: meta })
   })
 })
 
+function getParams(requestUrl) {
+  var params = (url.parse(requestUrl, true)).query
+
+  return {
+    limit: parseLimitParam(params.limit),
+    daysAgo: parseDayParam(params.daysAgo)
+  }
+}
+
+function parseDayParam(val) {
+  var n = parseInt(val)
+  return isNaN(n) || n < 1 || n > 356 ? 14 : n;
+}
+
+function parseLimitParam(val) {
+  var n = parseInt(val)
+  return isNaN(n) || n < 1 || n > 1000 ? 100 : n;
+}
 
 function getMeta(data, url) {
   var dates = []
@@ -28,7 +51,7 @@ function getMeta(data, url) {
 
   return {
     url: url,
-    dates: (dates.length > 10 ? dates.slice(-10) : dates)
+    dates: dates
   }
 }
 
