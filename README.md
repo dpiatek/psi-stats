@@ -1,8 +1,11 @@
 # psi-stats
 
-Track your url's [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) results, see your score and set performance budgets.
+An app to track your url's [PageSpeed Insight](https://developers.google.com/speed/pagespeed/insights/) results, see your score and set performance budgets.
 
 Demo: [http://psi-stats-example.herokuapp.com/](http://psi-stats-example.herokuapp.com/)
+
+**Note:**
+This is still very much in an experimental stage. I'm trying to make the app easily deployable and reusuable as well presentening the data in a useful and insightful way, with the right balance of good defaults and configuration.
 
 ## Setup
 
